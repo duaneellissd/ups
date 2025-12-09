@@ -290,22 +290,26 @@ oups: ${UPS_BINARY}
 
 ${XC_BINARY}: ${XC_OBJS} ${XCLIBDEPS}
 	@rm -f $@
+	@echo "Linking: " `realpath $@`
 	@echo Linking $@ with ${LINKCC} ${LINKCFLAGS} ${LINKFLAGS} ...
 	@${LINKCC} ${LINKCFLAGS} -o $@ ${XC_OBJS} ${XCLIBS} ${STDLIBS} ${LINKFLAGS}
 
 ${CG_BINARY}: ${CG_OBJS} ${CGLIBDEPS}
 	@rm -f $@
+	@echo "Linking: " `realpath $@`
 	@echo Linking $@ with ${LINKCC} ${LINKCFLAGS} ${LINKFLAGS} ...
 	@${LINKCC} ${LINKCFLAGS} -o $@ ${CG_OBJS} ${CGLIBS} ${STDLIBS} ${LINKFLAGS}
 
 ${CI_LIBRARY}: ${CILIB_OBJS} 
 	@rm -f $@
+	@echo "Linking: " `realpath $@`
 	@echo Linking $@ with ${MAKE_LIBRARY} ...
 	@${MAKE_LIBRARY} $@ ${CILIB_OBJS} 
 	@${RANLIB} $@
 
 ${CX_BINARY}: ${CX_OBJS} ${CXLIBDEPS}
 	@rm -f $@
+	@echo "Linking: " `realpath $@`
 	@echo Linking $@ with ${LINKCC} ${LINKCFLAGS} ${LINKFLAGS} ...
 	@${LINKCC} ${LINKCFLAGS} -o $@ ${CX_OBJS} ${CXLIBS} ${STDLIBS} ${LINKFLAGS}
 
