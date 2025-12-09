@@ -1,5 +1,7 @@
 #! /bin/bash
 
-bash ./configure
+git clean -dxf
+
+bash ./configure --enable-longlong --enable-longdouble
 
 make
