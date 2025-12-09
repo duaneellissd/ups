@@ -18,4 +18,4 @@ Then my phase plans are:
 	Phase 3 - Who knows...
 	
 
-
+Please see the file: update.md for more details on progress and set backs
