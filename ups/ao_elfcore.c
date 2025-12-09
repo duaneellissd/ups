@@ -217,18 +217,19 @@ get_note_info(alloc_pool_t *ap, const char *path, int fd,
 		  break;
 #endif /* not _STRUCTURED_PROC */
 
-#ifdef NT_PRFPREG
+#if defined(NT_PRFPREG) && defined(NT_FPREGSET)
+		  /* All is welL */
+#if NT_PRFPREG != NT_FPREGSET
+		  // see https://sourceware.org/bugzilla/show_bug.cgi?id=14890
+		  #error THESE are assumed to be the same?
+#else
+		  /* ALL IS WELL */
+#endif
+#endif
 		case NT_PRFPREG:
 		  fpregs = e_malloc(sizeof(elf_core_fpregset_t));
 		  memcpy(fpregs, desc, sizeof(elf_core_fpregset_t));
 		  break;
-#endif
-#ifdef NT_FPREGSET
-		case NT_FPREGSET:
-		  fpregs = e_malloc(sizeof(elf_core_fpregset_t));
-		  memcpy(fpregs, desc, sizeof(elf_core_fpregset_t));
-		  break;
-#endif
 
 #ifdef NT_TASKSTRUCT
 #if !defined(NT_PRXREG) || NT_PRXREG != NT_TASKSTRUCT
