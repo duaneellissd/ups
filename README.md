@@ -10,3 +10,12 @@ In some ways it is a labor of love..
 
 -Duane
 
+To build what I am working towards: use the build.sh script.
+
+Then my phase plans are:
+	Phase 1 - Compile & link - today when I started it does not compile yet.
+	Phase 2 - Plan: No warnings
+	Phase 3 - Who knows...
+	
+
+
