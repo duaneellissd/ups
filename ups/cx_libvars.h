@@ -98,14 +98,14 @@ extern int	sys_nerr;
 #if defined(__GLIBC__)  && (__GLIBC__ >= 2)
 #if defined(__GLIBC_MINOR__) && (__GLIBC_MINOR__ >= 1)
 	/* glibc 2.1 */
-	V(_IO_2_1_stdin_)
-	V(_IO_2_1_stdout_)
-	V(_IO_2_1_stderr_)
+	//	V(_IO_2_1_stdin_)
+	//	V(_IO_2_1_stdout_)
+	//	V(_IO_2_1_stderr_)
 #else
 	/* glibc 2.0 */
-	V(_IO_stdin_)
-	V(_IO_stdout_)
-	V(_IO_stderr_)
+	//	V(_IO_stdin_)
+	//	V(_IO_stdout_)
+	//	V(_IO_stderr_)
 #endif
 #elif defined(_IO_stdin)
 	/* glibc 1.x (and other early Linux ?) */
