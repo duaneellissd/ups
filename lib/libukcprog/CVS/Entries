@@ -1,0 +1,22 @@
+/.cvsignore/1.1/Wed Oct 30 13:10:51 2002//
+/Makefile.in/1.2/Fri Nov 29 16:51:55 2002//
+/alloc.c/1.1.1.1/Sat Oct 26 13:02:08 2002//
+/basename.c/1.1/Fri Nov 29 16:51:55 2002//
+/config.c/1.1.1.1/Sat Oct 26 13:02:09 2002//
+/e_malloc.c/1.1.1.1/Sat Oct 26 13:02:08 2002//
+/e_realloc.c/1.1.1.1/Sat Oct 26 13:02:08 2002//
+/ebuf.c/1.2/Mon Nov  4 14:56:17 2002//
+/errf.c/1.2/Mon Jan 13 10:44:53 2014//
+/formf.c/1.1.1.1/Sat Oct 26 13:02:09 2002//
+/fpgetline.c/1.1.1.1/Sat Oct 26 13:02:09 2002//
+/ip.c/1.1.1.1/Sat Oct 26 13:02:10 2002//
+/logf.c/1.1.1.1/Sat Oct 26 13:02:10 2002//
+/panic.c/1.1.1.1/Sat Oct 26 13:02:09 2002//
+/sccsdata.c/1.1.1.1/Sat Oct 26 13:02:10 2002//
+/ssplit.c/1.1.1.1/Sat Oct 26 13:02:09 2002//
+/strf.c/1.1.1.1/Sat Oct 26 13:02:09 2002//
+/strnf.c/1.1.1.1/Sat Oct 26 13:02:09 2002//
+/strsave.c/1.1.1.1/Sat Oct 26 13:02:09 2002//
+/strtol.c/1.1.1.1/Sat Oct 26 13:02:09 2002//
+/ukcprog.h/1.2/Fri Nov 29 16:51:55 2002//
+D/doc////

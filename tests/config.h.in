@@ -1,0 +1,8 @@
+/* $Id: config.h.in,v 1.1 2003/08/31 15:45:25 ianedwards Exp $ */
+
+#define PACKAGE_NAME	""
+#define PACKAGE_TARNAME	""
+#define PACKAGE_VERSION	""
+#define PACKAGE_STRING	""
+#define PACKAGE_BUGREPORT	""
+

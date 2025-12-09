@@ -1,0 +1,24 @@
+/.cvsignore/1.1/Wed Oct 30 13:10:51 2002//
+/Makefile.in/1.1.1.1/Sat Oct 26 13:07:14 2002//
+/README/1.1.1.1/Sat Oct 26 13:07:09 2002//
+/bmdiv.c/1.1.1.1/Sat Oct 26 13:07:10 2002//
+/bmenu.c/1.1.1.1/Sat Oct 26 13:07:12 2002//
+/bmenu.h/1.1.1.1/Sat Oct 26 13:07:14 2002//
+/bmstack.c/1.1.1.1/Sat Oct 26 13:07:13 2002//
+/box.c/1.1.1.1/Sat Oct 26 13:07:10 2002//
+/coords.c/1.1.1.1/Sat Oct 26 13:07:12 2002//
+/cpats.c/1.1.1.1/Sat Oct 26 13:07:13 2002//
+/cursor.c/1.1.1.1/Sat Oct 26 13:07:11 2002//
+/cursors.h/1.1.1.1/Sat Oct 26 13:07:14 2002//
+/font.h/1.1.1.1/Sat Oct 26 13:07:14 2002//
+/fonts.c/1.1.1.1/Sat Oct 26 13:07:12 2002//
+/layout.h/1.1.1.1/Sat Oct 26 13:07:14 2002//
+/med3.c/1.1.1.1/Sat Oct 26 13:07:10 2002//
+/med3.h/1.1.1.1/Sat Oct 26 13:07:14 2002//
+/menu.c/1.1.1.1/Sat Oct 26 13:07:11 2002//
+/mhole.c/1.1.1.1/Sat Oct 26 13:07:13 2002//
+/rvals.c/1.1.1.1/Sat Oct 26 13:07:13 2002//
+/rw.c/1.1.1.1/Sat Oct 26 13:07:11 2002//
+/sccsdata.c/1.1.1.1/Sat Oct 26 13:07:13 2002//
+/strings.c/1.1.1.1/Sat Oct 26 13:07:14 2002//
+D/doc////

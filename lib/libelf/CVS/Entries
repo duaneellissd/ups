@@ -1,0 +1,23 @@
+/.cvsignore/1.1/Wed Oct 30 13:10:50 2002//
+/COPYING.LIB/1.1.1.1/Sat Oct 26 13:02:48 2002//
+/ChangeLog/1.1.1.1/Sat Oct 26 13:02:49 2002//
+/INSTALL/1.1.1.1/Sat Oct 26 13:02:50 2002//
+/Makefile.in/1.1.1.1/Sat Oct 26 13:02:42 2002//
+/README/1.1.1.1/Sat Oct 26 13:02:50 2002//
+/UpsMakefile.in/1.2/Fri Nov  1 12:01:15 2002//
+/VERSION/1.1.1.1/Sat Oct 26 13:02:50 2002//
+/acconfig.h/1.1.1.1/Sat Oct 26 13:02:42 2002//
+/aclocal.m4/1.1.1.1/Sat Oct 26 13:02:43 2002//
+/aclocal.m4.elflib/1.1.1.1/Sat Oct 26 13:02:50 2002//
+/config.guess/1.2/Sat Feb 14 10:46:14 2004//
+/config.h.in/1.1.1.1/Sat Oct 26 13:02:42 2002//
+/config.h.in.elflib/1.1.1.1/Sat Oct 26 13:02:50 2002//
+/config.sub/1.2/Sat Feb 14 10:46:14 2004//
+/configure/1.2/Fri Aug 29 13:22:20 2003//
+/configure.in/1.1.1.1/Sat Oct 26 13:02:42 2002//
+/configure.in.elflib/1.1.1.1/Sat Oct 26 13:02:50 2002//
+/install-sh/1.1.1.1/Sat Oct 26 13:02:48 2002//
+/mkinstalldirs/1.1.1.1/Sat Oct 26 13:02:48 2002//
+/stamp-h.in/1.1.1.1/Sat Oct 26 13:02:48 2002//
+D/lib////
+D/po////

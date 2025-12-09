@@ -1,0 +1,19 @@
+
+This implementation of dwarfdump is not complete.  Among the
+missing features are consumer support for .debug_macinfo and
+support for .debug_loc. 
+
+To build dwarfdump, first build libdwarf in the neighboring
+directory then type
+	./configure
+	make
+
+To use dwarf or libdwarf, you may want to install dwarf.h and
+libdwarf.h somewhere convenient, and you may need the libdwarf
+in the accompanying libdwarf directory
+
+David Anderson.  davea@sgi.com
+
+$Source: /home/duane/ups-3.38-beta2/zip/ups/ups/lib/dwarfdump/README,v $
+$Revision: 1.1.1.1 $
+$Date: 2002/10/26 13:04:52 $

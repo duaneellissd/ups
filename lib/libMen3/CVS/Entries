@@ -1,0 +1,23 @@
+/.cvsignore/1.1/Wed Oct 30 13:10:51 2002//
+/Makefile.in/1.1.1.1/Sat Oct 26 13:02:27 2002//
+/README/1.1.1.1/Sat Oct 26 13:02:23 2002//
+/marea.c/1.1.1.1/Sat Oct 26 13:02:24 2002//
+/mclose.c/1.1.1.1/Sat Oct 26 13:02:24 2002//
+/mcreate.c/1.1.1.1/Sat Oct 26 13:02:24 2002//
+/mdisplay.c/1.1.1.1/Sat Oct 26 13:02:25 2002//
+/mdup.c/1.1.1.1/Sat Oct 26 13:02:25 2002//
+/menu3.h/1.1.1.1/Sat Oct 26 13:02:27 2002//
+/menu_priv.h/1.1.1.1/Sat Oct 26 13:02:27 2002//
+/mfmodes.c/1.1.1.1/Sat Oct 26 13:02:25 2002//
+/minfo.c/1.1.1.1/Sat Oct 26 13:02:25 2002//
+/minsert.c/1.1.1.1/Sat Oct 26 13:02:25 2002//
+/mnewcap.c/1.2/Mon Nov  4 14:56:15 2002//
+/mopen.c/1.3/Mon Feb 16 13:01:58 2004//
+/mperror.c/1.1.1.1/Sat Oct 26 13:02:27 2002//
+/msize.c/1.1.1.1/Sat Oct 26 13:02:27 2002//
+/mstdfont.c/1.1.1.1/Sat Oct 26 13:02:27 2002//
+/sccsdata.c/1.1.1.1/Sat Oct 26 13:02:28 2002//
+/sccsdata.h/1.1.1.1/Sat Oct 26 13:02:27 2002//
+/wdbyte.c/1.1.1.1/Sat Oct 26 13:02:27 2002//
+/wdbyte.h/1.1.1.1/Sat Oct 26 13:02:27 2002//
+D
