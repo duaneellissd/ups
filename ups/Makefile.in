@@ -325,11 +325,13 @@ ciobjs: ${CIOBJS}
 
 ${UDB_BINARY}: ${UDB_OBJS} ${GDB_X11LIBDEPS}
 	@rm -f $@
+	@echo "Linking: " `realpath $@`
 	@echo Linking $@ with ${LINKCC} ${LINKCFLAGS} ${LINKFLAGS} ...
 	@${LINKCC} ${LINKCFLAGS} -o $@ ${UDB_OBJS} ${GDB_X11LIBS} ${STDLIBS} ${LINKFLAGS}
 
 ${UPS_BINARY}: ${UPS_OBJS} ${NATIVE_X11LIBDEPS}
 	@rm -f $@
+	@echo "Linking: " `realpath $@`
 	@echo Linking $@ with ${LINKCC} ${LINKCFLAGS} ${LINKFLAGS} ...
 	@${LINKCC} ${LINKCFLAGS} -o $@ ${UPS_OBJS} ${NATIVE_X11LIBS} ${STDLIBS} ${LINKFLAGS}
 
