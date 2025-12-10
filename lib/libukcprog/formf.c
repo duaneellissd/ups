@@ -552,4 +552,7 @@ gencase:			if (modifier == 'h')
 
 		++fmt;	/* step over format character */
 	}
+    /* Force use these vars */
+    (void)(prefix_space);
+    (void)(print_sign);
 }

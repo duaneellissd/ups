@@ -189,7 +189,9 @@ bool err;
 	iov[4].iov_base = (caddr_t)"\n";
 	iov[4].iov_len = 1;
 
-	writev(Log_fd, iov, (int)(sizeof(iov) / sizeof(*iov)));
+    ssize_t ignored;
+	ignored = writev(Log_fd, iov, (int)(sizeof(iov) / sizeof(*iov)));
+    (void)(ignored);
 }
 
 
