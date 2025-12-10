@@ -11,4 +11,7 @@ root=true
 [Makefile*]
 	indent_style=tab
 	indent_size=8
-	
+[*.yml]
+    indent_size=4
+    indent_style = space
+    
