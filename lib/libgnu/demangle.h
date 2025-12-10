@@ -160,4 +160,6 @@ enum gnu_v3_dtor_kinds {
 extern enum gnu_v3_dtor_kinds
 	is_gnu_v3_mangled_dtor PARAMS ((const char *name));
 
+/* Added for UPS */
+extern char *gnu_demangle_type (const char **mangled, int options);
 #endif	/* DEMANGLE_H */

@@ -1956,8 +1956,7 @@ demangle_special_name (demangling_t dm)
 
 	case 'C':
 	  /* TC is a special g++ mangling for a construction vtable. */
-	  if (!flag_strict)
-	    {
+	  if (!flag_strict) {
 	      dyn_string_t derived_type;
 
 	      advance_char (dm);
@@ -1970,38 +1969,41 @@ demangle_special_name (demangling_t dm)
 
 	      /* Demangle the offset.  */
 	      number = dyn_string_new (4);
-	      if (number == NULL)
-		{
-		  dyn_string_delete (derived_type);
-		  return STATUS_ALLOCATION_FAILED;
-		}
+	      if (number == NULL){
+              dyn_string_delete (derived_type);
+              return STATUS_ALLOCATION_FAILED;
+          }
 	      demangle_number_literally (dm, number, 10, 1);
 	      /* Demangle the underscore separator.  */
 	      status = demangle_char (dm, '_');
 
 	      /* Demangle the base type.  */
-	      if (STATUS_NO_ERROR (status))
-		status = demangle_type (dm);
+	      if (STATUS_NO_ERROR (status)){
+              status = demangle_type (dm);
+          }
 
 	      /* Emit the derived type.  */
-	      if (STATUS_NO_ERROR (status))
-		status = result_add (dm, "-in-");
-	      if (STATUS_NO_ERROR (status))
-		status = result_add_string (dm, derived_type);
+	      if (STATUS_NO_ERROR (status)){
+              status = result_add (dm, "-in-");
+          }
+	      if (STATUS_NO_ERROR (status)){
+              status = result_add_string (dm, derived_type);
+          }
 	      dyn_string_delete (derived_type);
 
 	      /* Don't display the offset unless in verbose mode.  */
-	      if (flag_verbose)
-		{
-		  status = result_add_char (dm, ' ');
-		  if (STATUS_NO_ERROR (status))
-		    result_add_string (dm, number);
-		}
-	      dyn_string_delete (number);
-	      RETURN_IF_ERROR (status);
-	      break;
-	    }
-	  /* If flag_strict, fall through.  */
+	      if (flag_verbose){
+              status = result_add_char (dm, ' ');
+              if (STATUS_NO_ERROR (status)){
+                  result_add_string (dm, number);
+              }
+              dyn_string_delete (number);
+              RETURN_IF_ERROR (status);
+              break;
+          }
+      }
+      // If flag_strict, fall through. 
+	  /*FALLTHROUGH*/
 
 	default:
 	  return "Unrecognized <special-name>.";
