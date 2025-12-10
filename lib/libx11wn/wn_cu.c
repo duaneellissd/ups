@@ -138,11 +138,10 @@ bitmap_t *cbm, *mask_bm;
 #endif /* SUNVIEW */
 #ifdef X11
 	Pixmap cursor_pixmap, mask_pixmap;
-	int width, height;
+    int height;
 	Cursor cid;
 	static bool first_call = TRUE, invert_cursors;
 
-	width = cbm->bm_width;
 	height = cbm->bm_height;
 
 	/*  The DECwindows server on the color DS3100 (at least) is broken -
@@ -161,9 +160,9 @@ bitmap_t *cbm, *mask_bm;
 	}
 
 	if (invert_cursors) {
-		toggle_shorts(cbm->bm_data, (cbm->bm_lineinc / 2) * cbm->bm_height);
+		toggle_shorts(cbm->bm_data, (cbm->bm_lineinc / 2) * height);
 		cursor_pixmap = bm_to_pixmap(cbm);
-		toggle_shorts(cbm->bm_data, (cbm->bm_lineinc / 2) * cbm->bm_height);
+		toggle_shorts(cbm->bm_data, (cbm->bm_lineinc / 2) * height);
 
 		/*  We can't just use cursor_pixmap for the mask when mask_bm
 		 *  is NULL because cursor_pixmap is inverted.

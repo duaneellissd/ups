@@ -738,6 +738,7 @@ int *p_xyset;
 			numClicks++;
 		else
 			numClicks = 0;
+        /* FALLTHROUGH */
 	case ButtonRelease:
 		xb = (XButtonPressedEvent *)&x_event;
 		lastButtonTime = ev->ev_time = xb->time;
