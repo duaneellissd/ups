@@ -25,7 +25,7 @@ X11_LIB		= @X_LIBS@  @X_PRE_LIBS@  -lX11  @X_EXTRA_LIBS@
 
 CPPFLAGS	= @CPPFLAGS@  @DEFS@  -I.  -I..  ${X11_INC}
 FPPFLAGS	= @FPPFLAGS@  @DEFS@  -I.  -I..  ${X11_INC}
-CFLAGS		= @CFLAGS@  ${CPPFLAGS}
+CFLAGS		= @CFLAGS@  ${CPPFLAGS} -Wstrict-prototypes -Wmissing-prototypes
 FFLAGS		= @CFLAGS@
 CXXFLAGS	= @CXXFLAGS@
 LDFLAGS		= @LDFLAGS@  ${X11_LIB}  @LIBS@

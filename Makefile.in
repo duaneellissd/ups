@@ -67,8 +67,8 @@ X11_LIB		= @X_LIBS@  @X_PRE_LIBS@  -lX11  @X_EXTRA_LIBS@
 #EXTRA_SUBMAKEFLAGS = "ARCH_CFLAGS=-DFIX_SHORT_PARAMS"
 # -----------------------------------------------------------------------------
 
-CPPFLAGS	= @CPPFLAGS@  @DEFS@  -I.  ${X11_INC}
-CFLAGS		= @CFLAGS@  ${CPPFLAGS}
+CPPFLAGS	= @CPPFLAGS@  @DEFS@  -I.  ${X11_INC} 
+CFLAGS		= @CFLAGS@  ${CPPFLAGS} -Wstrict-prototypes -Wmissing-prototypes
 LDFLAGS		= @LDFLAGS@
 LIBS		= @LIBS@
 

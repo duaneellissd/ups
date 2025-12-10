@@ -36,7 +36,7 @@ X11_INC		= @X_CFLAGS@
 # X libraries
 X11_LIB		= @LDFLAGS@  @X_LIBS@  @X_PRE_LIBS@  -lX11  @X_EXTRA_LIBS@
 
-CPPFLAGS	= -I.  ${X11_INC}  @CPPFLAGS@  @DEFS@
+CPPFLAGS	= -I.  ${X11_INC}  @CPPFLAGS@  @DEFS@ -Wstrict-prototypes -Wmissing-prototypes
 CFLAGS		= @CFLAGS@  ${CPPFLAGS}
 LDFLAGS		= @LDFLAGS@
 LIBS		= @LIBS@

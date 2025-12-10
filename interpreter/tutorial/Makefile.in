@@ -8,7 +8,7 @@ X11_LIBS   = -L/usr/X11R6/lib -lSM -lICE -lX11
 MATH_LIBS  = -lm
 LIBS       = $(MATH_LIBS) $(UPS_LIBS) $(X11_LIBS)
 INC_PATH   = -I$(UPS_SRC)/develhdrs -I$(UPS_SRC)
-CCFLAGS    = -g $(INC_PATH)
+CCFLAGS    = -g $(INC_PATH)  -Wstrict-prototypes -Wmissing-prototypes
 
 all: example1 example2 example3 example4 example5 example6
 
