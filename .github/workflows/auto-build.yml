@@ -1,0 +1,17 @@
+name: Build Test
+run-name:   "${{github.actor}} is building the code"
+on: [push]
+jobs:
+     build-test:
+        runs-on: ubuntu-latest
+        steps:
+        - run: echo "Reason: ${{github.event_name}}"
+        - run: echo "OS: ${{runner.os}}"
+        - run: echo "Branch: ${{github.ref}}"
+        - run: echo "Repo: ${{github.repositoruy}}"
+        - name: Checkout code
+          uses: actions/checkout@v5
+        - name: Build...
+          run: |
+            bash ./build.sh
+        - run: echo "Status: ${{job.status}}"
