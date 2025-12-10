@@ -827,15 +827,18 @@ static void load_history(file, history_item)
 FILE* file;
 Edit_history_item* history_item;
 {
+    int ignore;
     int first_entry_offset;
     int next_char;
     Edit_history* history = *history_item->history_addr;
-    fscanf(file,"%d\n", &first_entry_offset);  /* temp for old files */
+    ignore = fscanf(file,"%d\n", &first_entry_offset);  /* temp for old files */
+    (void)(ignore);
     while (':' == (next_char = getc(file)))
     {
 	char* text;
 	int len;
-	fscanf(file,"%d:", &len);
+	ignore=fscanf(file,"%d:", &len);
+    (void)(ignore);
 	text = e_malloc(len+1);
 	fread(text, 1, len, file);
 	text[len] = 0;

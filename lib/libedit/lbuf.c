@@ -647,8 +647,6 @@ const char *label;
 	
 	printf("%-10s [%ld]: |", label, (long)b->buflen);
 
-	count = 0;
-
 	for (bl = b->blocks; bl != NULL; bl = bl->next) {
 		int i;
 

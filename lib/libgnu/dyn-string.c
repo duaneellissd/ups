@@ -300,7 +300,7 @@ dyn_string_insert_cstr (dest, pos, src)
      const char *src;
 {
   int i;
-  int length = strlen (src);
+  int length = 1+strlen (src); /* include space for null */
 
   if (dyn_string_resize (dest, dest->length + length) == NULL)
     return 0;

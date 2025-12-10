@@ -66,4 +66,33 @@
 #include "dwarf_opaque.h"
 #include "dwarf_error.h"
 #include "dwarf_util.h"
+
+extern int dwarf_nextglob(Dwarf_Debug dbg,
+                          Dwarf_Global glob,
+                          Dwarf_Global * returned_nextglob, Dwarf_Error * error);
+
+extern int
+dwarf_pubtype_type_die_offset(Dwarf_Type type_in,
+                              Dwarf_Off * ret_offset,
+                              Dwarf_Error * error);
+
+extern void
+dwarf_p_dealloc(Dwarf_Small * ptr);
+
+extern int
+_dwarf_pro_pre_alloc_n_reloc_slots(Dwarf_P_Debug dbg,
+                                   int rel_sec_index,
+                                   Dwarf_Unsigned newslots);
+
+extern  int
+_dwarf_pro_reloc_get_a_slot(Dwarf_P_Debug dbg,
+                            int base_sec_index, void **relrec_to_fill);
+
+extern int
+_dwarf_transform_simplename_to_disk(Dwarf_P_Debug dbg,
+                                    enum dwarf_sn_kind entrykind,
+                                    int section_index, /* in de_elf_sects etc */
+                                    Dwarf_Error * error);
+
+
 #endif /* DWARF_INCL_H */

@@ -180,6 +180,7 @@ int signo;
 {
 	struct stat stbuf;
 	static const char upscore[] = "ups-core";
+    int ignored = 0;
 #ifdef SIG_UNBLOCK
 	sigset_t mask;
 #endif
@@ -188,7 +189,7 @@ int signo;
 	if (!Done_panic) {
 		const char *sigstr;
 
-		ERR("Fatal error: ");
+		ignored = ERR("Fatal error: ");
 
 		/*  Convert the signal number to text ourself as sprintf,
 		 *  strf etc are too complex to call from here.
@@ -214,7 +215,7 @@ int signo;
 		}
 
 		if (sigstr != NULL) {
-			write(2, sigstr, strlen(sigstr));
+			ignored += write(2, sigstr, strlen(sigstr));
 		}
 		else {
 			char nbuf[20];
@@ -225,34 +226,34 @@ int signo;
 			*--np = '\0';
 
 			n = (signo < 0) ? -signo : signo;
-			for (; n != 0 && np > nbuf; n /= 10)
+			for (; n != 0 && np > nbuf; n /= 10){
 				*--np = n % 10 + '0';
-			
-			if (signo < 0)
+			}
+			if (signo < 0){
 				*--np = '-';
-
-			ERR("Got signal ");
-			write(2, np, sizeof(nbuf) - (np - nbuf));
+            }
+			ignored += ERR("Got signal ");
+			ignored += write(2, np, sizeof(nbuf) - (np - nbuf));
 		}
 
-		ERR(".\n");
+		ignored += ERR(".\n");
 	}
 	
 	if (lstat("core", &stbuf) != 0 && errno == ENOENT) {
-		ERR("Dumping core");
+		ignored += ERR("Dumping core");
 	}
 	else if (chdir(upscore) == 0 ||
 		 	(mkdir(upscore, 0755) == 0 && chdir(upscore) == 0)) {
-		ERR("Dumping core in ups-core/core");
+		ignored += ERR("Dumping core in ups-core/core");
 	}
 	else if (chdir("/tmp") == 0) {
-		ERR("Dumping core in /tmp/core");
+		ignored = ERR("Dumping core in /tmp/core");
 	}
 	else {
-		ERR("Exiting without dumping core.\n");
+		ignored += ERR("Exiting without dumping core.\n");
 		_exit(1);
 	}
-	ERR(" ... ");
+	ignored += ERR(" ... ");
 
 #ifdef SIG_UNBLOCK
 	sigemptyset(&mask);
@@ -264,7 +265,8 @@ int signo;
 	signal(signo, SIG_DFL);
 	kill(getpid(), signo);
 
-	ERR("Unexpectedly survived signal - exiting without dumping core.\n");
+	ignored += ERR("Unexpectedly survived signal - exiting without dumping core.\n");
+    (void)(ignored);
 	_exit(1);
 }
 

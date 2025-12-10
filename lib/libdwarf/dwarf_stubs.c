@@ -47,5 +47,9 @@ dwarf_nextglob(Dwarf_Debug dbg,
     Dwarf_Global glob,
     Dwarf_Global * returned_nextglob, Dwarf_Error * error)
 {
+    (void)(dbg);
+    (void)(glob);
+    (void)(returned_nextglob);
+    (void)(error);
     return (DW_DLV_NO_ENTRY);
 }

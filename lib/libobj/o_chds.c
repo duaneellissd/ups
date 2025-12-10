@@ -248,12 +248,13 @@ int which;
  *	Select all the objects below the parent if sel_descendents is TRUE.
  */
 static int
-dump_obj_tree(par, sel_self, sel_children, sel_descendents, level, func, arg)
-struct objst *par;
-bool sel_self, sel_children, sel_descendents;
-int level;
-obj_dump_callback_t func;
-char *arg;
+dump_obj_tree(struct objst *par,
+              bool sel_self,
+              bool sel_children,
+              bool sel_descendents,
+              int level,
+              obj_dump_callback_t func,
+              char *arg)
 {
 	if (sel_self) {
 		char *text;
@@ -270,15 +271,17 @@ char *arg;
 		int res;
 	
 		for (obj = par->ob_child; obj != NULL; obj = obj->ob_next) {
-		  if (!(obj->ob_flags & OB_NO_INDENT)) /* RGA honour indents */
-		    /* in outwin too */
-			res = dump_obj_tree(obj, TRUE, sel_descendents, TRUE,
-					    level + 1, func, arg);
-		  else
-			res = dump_obj_tree(obj, TRUE, sel_descendents, TRUE,
-					    level, func, arg);
-			if (res != 0)
+            if (!(obj->ob_flags & OB_NO_INDENT)){ /* RGA honour indents */
+                /* in outwin too */
+                res = dump_obj_tree(obj, TRUE, sel_descendents, TRUE,
+                                    level + 1, func, arg);
+            } else {
+                res = dump_obj_tree(obj, TRUE, sel_descendents, TRUE,
+                                    level, func, arg);
+            }
+            if (res != 0){
 				return res;
+            }
 		}
 	}
 	

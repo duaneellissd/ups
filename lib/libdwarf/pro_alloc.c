@@ -130,6 +130,7 @@ _dwarf_p_get_alloc(Dwarf_P_Debug dbg, Dwarf_Unsigned size)
 void
 dwarf_p_dealloc(Dwarf_Small * ptr)
 {
+    (void)(ptr);
     return;
 }
 

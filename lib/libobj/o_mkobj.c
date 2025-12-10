@@ -115,7 +115,7 @@ objid_t code;
 	int i;
 	struct hashst *new;
 	
-	i = HASH(code);
+	i = (int)HASH(code);
 	new = new_hash();
 	new->ha_obj = obj;
 	new->ha_next = Hashtab[i];
@@ -172,7 +172,9 @@ register objid_t code;
 #endif
 		return Likely2;
 	}
-	for (p_hash = Hashtab[HASH(code)]; p_hash != NULL &&
+    int tmp;
+    tmp = (int)HASH(code);
+	for (p_hash = Hashtab[tmp]; p_hash != NULL &&
 		    p_hash->ha_obj->ob_code != code; p_hash = p_hash->ha_next)
 		;
 	if (p_hash == NULL)
@@ -194,7 +196,7 @@ struct objst *obj;
 	int i;
 	register struct hashst *p_hash, *prev_p_hash;
 	
-	i = HASH(obj->ob_code);
+	i = (int)HASH(obj->ob_code);
 	p_hash = Hashtab[i];
 	if (p_hash == NULL)
 		panic("p_hash NULL in unenter_obj");

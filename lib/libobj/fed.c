@@ -544,15 +544,13 @@ int meaning;
  *  Does block or vertical bar cursor.
  */
 void
-ed_cursor(edesc, cursor_on)
-edesc_t *edesc;
-int cursor_on;
+ed_cursor(edesc_t *edesc, int cursor_on)
 {
 	font_t *font;
 	int fg, bg, pos, ch;
 	char *s, buf[2];
 
-	if (!(edesc->ed_flags & EDF_CURSOR_ON) == cursor_on) {
+	if ((!(edesc->ed_flags & EDF_CURSOR_ON)) == cursor_on) {
 		font = edesc->ed_font;
 		s = edesc->ed_copy;
 		pos = edesc->ed_curpos;

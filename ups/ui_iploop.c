@@ -270,8 +270,10 @@ const char *mesg;
 
 	wn = get_message_wn();
 	if (wn == -1) {
-		write(2, mesg, strlen(mesg));
-		write(2, "\n", 1);
+        int tmp;
+		tmp = write(2, mesg, strlen(mesg));
+		tmp = tmp + write(2, "\n", 1);
+        (void)(tmp);
 	}
 	else {
 		if (want_bell)

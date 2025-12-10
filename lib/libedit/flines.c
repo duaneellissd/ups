@@ -387,6 +387,7 @@ int delta;
 			--d->point;
 	}
 
+    (void)(cursor_was_visible);
 	return delta;
 }
 
@@ -694,7 +695,7 @@ int delta;
 	edit__free_rdesc(&lmap);
 	edit__free_rdesc(&new_topline_lmap);
 	edit__free_rdesc(&repaint_start_lmap);
-	
+    (void)(num_common_lines);
 	return delta;
 }
 
@@ -906,6 +907,7 @@ size_t startpos, limpos;
 	size_t endpos, buflen;
 
 	buflen = edit_get_buffer_length(d->buffer);
+    (void)(buflen);
 	edit_find_char_forwards(d->buffer, limpos, EDIT_MAX_POINT, "\n", &endpos);
 
 	fs->change_affects_display =

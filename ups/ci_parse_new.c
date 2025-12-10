@@ -1,6 +1,6 @@
 #ifndef lint
-static char const 
-yyrcsid[] = "$FreeBSD: src/usr.bin/yacc/skeleton.c,v 1.28.2.1 2001/07/19 05:46:39 peter Exp $";
+//static char const 
+//yyrcsid[] = "$FreeBSD: src/usr.bin/yacc/skeleton.c,v 1.28.2.1 2001/07/19 05:46:39 peter Exp $";
 #endif
 #include <stdlib.h>
 #define YYBYACC 1
@@ -19,7 +19,7 @@ static int yygrowstack();
 #define YYPREFIX "yy"
 
 /* @(#)ci_parse.y	1.15 16 Apr 1994 (UKC) */
-char ups_ci_parse_y_rcsid[] = "$Id: ci_parse_new.c,v 1.1.1.1 2002/10/26 13:06:50 ianedwards Exp $";
+//char ups_ci_parse_y_rcsid[] = "$Id: ci_parse_new.c,v 1.1.1.1 2002/10/26 13:06:50 ianedwards Exp $";
 
 #include <mtrprog/ifdefs.h>
 

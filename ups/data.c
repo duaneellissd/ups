@@ -492,6 +492,7 @@ size_t nbytes;
 		int regno;
 		char *rptr;
 
+        regval = 0;
 		rptr = (char *)&regval;
 		regno = addr - REG_ADDR;
 
@@ -669,6 +670,7 @@ char *buffer;    /* Place output here */
 	case 3:
 	    grp = 2;
 	    /* fall into next case */
+        /* FALLTHROUGH */
 	case 2:
 	    val = *(unsigned short*)target_mem;
 	    fmt = "%04lx ";

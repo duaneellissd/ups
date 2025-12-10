@@ -104,7 +104,8 @@ int lnum;
 	  (si->fil, buf+ strlen(buf)))
       {
 	strcat(buf, "&");
-	system(buf);
+	int tmp = system(buf);
+    (void)(tmp);
       }
       else
 	errf("Unknown file");

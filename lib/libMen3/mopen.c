@@ -218,12 +218,15 @@ char *mname;
 {
 	int fd, magic;
 	MENU *menu;
+    int r;
 
-	if ((fd = open(fname,0)) < 0) {
+    fd = open(fname,0);
+	if (fd < 0) {
 		menerr = MNOFIL;
 		return(NULL);
 	}
-	read(fd,(char *)&magic,sizeof(magic));
+	r = read(fd,(char *)&magic,sizeof(magic));
+    (void)(r); /* use/ignore result */
 	if (magic == MENUMAGIC) {
 		/* an old binary menu. read it in and convert it.
 		 */

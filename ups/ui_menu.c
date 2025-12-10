@@ -2513,7 +2513,10 @@ bool peek_at_event;
 
 				if (wn_intersects_rect(tm->tm_mdtab[i].wn, e_x, e_y, e_w, e_h))
 				{
-				msmask = !(1 << tm->tm_current_md);
+                    printf("ERROR FIX ME HERE:%s%d", __FILE__, __LINE__);
+                    /* this was: !(1 << tm->tm_current_md); */
+                    /* and seems wrong, changed to ~ */
+				msmask = ~(1 << tm->tm_current_md);
 				Mselect(1, 1, tm->tm_mdtab[i].wn,
 							MS_PRESSED, msmask);
 				Mselect(1, 1, tm->tm_mdtab[i].wn,
@@ -3316,6 +3319,7 @@ get_custom_menu_str(func, ev)
 	      break;
 	    }
 	    /* else fall into default case */
+        /*FALLTHROUGH*/
 	  default:
 	    /*
 	     **    Back up and pass the '\' through

@@ -106,7 +106,7 @@ get_addr_and_class(const Elf_Data *data, int ndx, Elf_Type type, unsigned *cls) 
 
 GElf_Sym*
 gelf_getsym(Elf_Data *src, int ndx, GElf_Sym *dst) {
-    GElf_Sym buf;
+    static  GElf_Sym buf; /* FIXME: This was returned funny */
     unsigned cls;
     char *tmp;
 
@@ -176,7 +176,7 @@ gelf_update_sym(Elf_Data *dst, int ndx, GElf_Sym *src) {
 
 GElf_Dyn*
 gelf_getdyn(Elf_Data *src, int ndx, GElf_Dyn *dst) {
-    GElf_Dyn buf;
+    static    GElf_Dyn buf; /* FIXME This was returned funny */
     unsigned cls;
     char *tmp;
 
@@ -238,7 +238,7 @@ gelf_update_dyn(Elf_Data *dst, int ndx, GElf_Dyn *src) {
 
 GElf_Rela*
 gelf_getrela(Elf_Data *src, int ndx, GElf_Rela *dst) {
-    GElf_Rela buf;
+    static GElf_Rela buf; /* FIXME This was returned funny */
     unsigned cls;
     char *tmp;
 
@@ -309,7 +309,7 @@ gelf_update_rela(Elf_Data *dst, int ndx, GElf_Rela *src) {
 
 GElf_Rel*
 gelf_getrel(Elf_Data *src, int ndx, GElf_Rel *dst) {
-    GElf_Rel buf;
+    static GElf_Rel buf; /* FIXME this was returned funny */
     unsigned cls;
     char *tmp;
 

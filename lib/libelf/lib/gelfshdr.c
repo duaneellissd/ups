@@ -37,7 +37,7 @@ static const char rcsid[] = "@(#) $Id: gelfshdr.c,v 1.1.1.1 2002/10/26 13:02:56 
 
 GElf_Shdr*
 gelf_getshdr(Elf_Scn *scn, GElf_Shdr *dst) {
-    GElf_Shdr buf;
+static   GElf_Shdr buf;
 
     if (!scn) {
 	return NULL;

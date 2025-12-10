@@ -708,7 +708,7 @@ var_t *v;
 lexinfo_t *lx;
 expr_context_t context;
 {
-	opcode_t generic_opcode;
+	opcode_t generic_opcode = OC_NOP;
 	bool is_civar, need_deref;
 	addrtype_t addrtype;
 	taddr_t addr;
@@ -1749,6 +1749,7 @@ doit:
 		 *  in a value context.
 		 */
 		ci_panic("got CTV in a value context");
+        /* FALLTHROUGH */
 	default:
 		ci_panic("unknown cvt op in ct");
 	}

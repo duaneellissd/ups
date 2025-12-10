@@ -424,7 +424,7 @@ int fil_lnum;
 					     BM_BIT0_LEFT, bits);
 	int x, y, width, height, baseline;
 	size_t point, start, lim;
-	Edit_buffer *buffer;
+	Edit_buffer *buffer = NULL;
 	long sa;
 
 	if (!file_lnum_to_point_range(sw->fil, TO_0BASE(fil_lnum),
@@ -1391,7 +1391,7 @@ Editblock *eb;
 size_t point;
 {
 	size_t start, lim;
-	Edit_buffer *buffer;
+	Edit_buffer *buffer = NULL;
 		
 	get_buffer(sw->fil, &buffer);
 	

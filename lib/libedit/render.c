@@ -734,6 +734,7 @@ Edit_propchange **p_pc;
 	
 	rc = d->render_context;
 	seen_newline = FALSE;
+    (void)(seen_newline);
 	iptr = ilim = NULL;
 	optr = obuf = rd->linebuf;
 	olim = optr + rd->linebuf_size;
@@ -826,7 +827,7 @@ Edit_propchange **p_pc;
 			if (charlen <= ch_offset)
 				panic("cc botch in cl");
 			nbytes = charlen - ch_offset;
-
+            (void)(nbytes);
 			sptr = charstr + ch_offset;
 			slim = charstr + charlen;
 

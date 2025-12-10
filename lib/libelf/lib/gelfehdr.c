@@ -37,7 +37,7 @@ static const char rcsid[] = "@(#) $Id: gelfehdr.c,v 1.1.1.1 2002/10/26 13:02:56 
 
 GElf_Ehdr*
 gelf_getehdr(Elf *elf, GElf_Ehdr *dst) {
-    GElf_Ehdr buf;
+    static    GElf_Ehdr buf; /* FIXME: THIS WAS RETURNED FUNNY */
     char *tmp;
 
     if (!elf) {
