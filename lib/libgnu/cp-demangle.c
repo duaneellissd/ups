@@ -437,8 +437,7 @@ string_list_new (length)
 /* Deletes the entire string list starting at NODE.  */
 
 static void
-string_list_delete (node)
-     string_list_t node;
+string_list_delete (string_list_t node)
 {
   while (node != NULL)
     {
@@ -452,9 +451,7 @@ string_list_delete (node)
    character of the result is CHARACTER, a space is inserted first.  */
 
 static status_t
-result_add_separated_char (dm, character)
-     demangling_t dm;
-     int character;
+result_add_separated_char (demangling_t dm, int character)
 {
   char *result = dyn_string_buf (result_string (dm));
   int caret_pos = result_caret_pos (dm);
@@ -475,8 +472,7 @@ result_add_separated_char (dm, character)
    allocation failure.  */
 
 static status_t
-result_push (dm)
-     demangling_t dm;
+result_push (demangling_t dm)
 {
   string_list_t new_string = string_list_new (0);
   if (new_string == NULL)
@@ -494,8 +490,7 @@ result_push (dm)
    string.  */
 
 static string_list_t
-result_pop (dm)
-     demangling_t dm;
+result_pop (demangling_t dm)
 {
   string_list_t top = dm->result;
   dm->result = top->next;
@@ -506,8 +501,7 @@ result_pop (dm)
    value is an offet from the end of the result string.  */
 
 static int
-result_get_caret (dm)
-     demangling_t dm;
+result_get_caret (demangling_t dm)
 {
   return ((string_list_t) result_string (dm))->caret_position;
 }
@@ -516,9 +510,7 @@ result_get_caret (dm)
    offet from the end of the result string.  */
 
 static void
-result_set_caret (dm, position)
-     demangling_t dm;
-     int position;
+result_set_caret (demangling_t dm, int position)
 {
   ((string_list_t) result_string (dm))->caret_position = position;
 }
@@ -527,9 +519,7 @@ result_set_caret (dm, position)
    POSITION_OFFSET.  A negative value shifts the caret to the left.  */
 
 static void
-result_shift_caret (dm, position_offset)
-     demangling_t dm;
-     int position_offset;
+result_shift_caret (demangling_t dm, int position_offset)
 {
   ((string_list_t) result_string (dm))->caret_position += position_offset;
 }
@@ -539,8 +529,7 @@ result_shift_caret (dm, position_offset)
    the caller should supress adding another space.  */
 
 static int
-result_previous_char_is_space (dm)
-     demangling_t dm;
+result_previous_char_is_space (demangling_t dm)
 {
   char *result = dyn_string_buf (result_string (dm));
   int pos = result_caret_pos (dm);
@@ -552,8 +541,7 @@ result_previous_char_is_space (dm)
    start of productions that can add substitutions.  */
 
 static int
-substitution_start (dm)
-     demangling_t dm;
+substitution_start (demangling_t dm)
 {
   return result_caret_pos (dm);
 }
@@ -563,10 +551,7 @@ substitution_start (dm)
    non-zero, this potential substitution is a template-id.  */
 
 static status_t
-substitution_add (dm, start_position, template_p)
-     demangling_t dm;
-     int start_position;
-     int template_p;
+substitution_add (demangling_t dm, int start_position, int template_p)
 {
   dyn_string_t result = result_string (dm);
   dyn_string_t substitution = dyn_string_new (0);
@@ -624,10 +609,7 @@ substitution_add (dm, start_position, template_p)
    number of substitution candidates, returns NULL.  */
 
 static dyn_string_t
-substitution_get (dm, n, template_p)
-     demangling_t dm;
-     int n;
-     int *template_p;
+substitution_get (demangling_t dm, int n, int *template_p)
 {
   struct substitution_def *sub;
 
@@ -644,9 +626,7 @@ substitution_get (dm, n, template_p)
 /* Debugging routine to print the current substitutions to FP.  */
 
 static void
-substitutions_print (dm, fp)
-     demangling_t dm;
-     FILE *fp;
+substitutions_print (demangling_t dm, FILE *fp)
 {
   int seq_id;
   int num = dm->num_substitutions;
@@ -671,7 +651,7 @@ substitutions_print (dm, fp)
    fails.  */
 
 static template_arg_list_t
-template_arg_list_new ()
+template_arg_list_new (void)
 {
   template_arg_list_t new_list =
     (template_arg_list_t) malloc (sizeof (struct template_arg_list_def));
@@ -688,8 +668,7 @@ template_arg_list_new ()
    contains.  */
 
 static void
-template_arg_list_delete (list)
-     template_arg_list_t list;
+template_arg_list_delete (template_arg_list_t list)
 {
   /* If there are any arguments on LIST, delete them.  */
   if (list->first_argument != NULL)
@@ -701,9 +680,7 @@ template_arg_list_delete (list)
 /* Adds ARG to the template argument list ARG_LIST.  */
 
 static void 
-template_arg_list_add_arg (arg_list, arg)
-     template_arg_list_t arg_list;
-     string_list_t arg;
+template_arg_list_add_arg (template_arg_list_t arg_list, string_list_t arg)
 {
   if (arg_list->first_argument == NULL)
     /* If there were no arguments before, ARG is the first one.  */
@@ -720,9 +697,7 @@ template_arg_list_add_arg (arg_list, arg)
    argument list ARG_LIST.  */
 
 static string_list_t
-template_arg_list_get_arg (arg_list, index)
-     template_arg_list_t arg_list;
-     int index;
+template_arg_list_get_arg (template_arg_list_t arg_list, int index)
 {
   string_list_t arg = arg_list->first_argument;
   /* Scan down the list of arguments to find the one at position
@@ -742,9 +717,7 @@ template_arg_list_get_arg (arg_list, index)
 /* Pushes ARG_LIST onto the top of the template argument list stack.  */
 
 static void
-push_template_arg_list (dm, arg_list)
-     demangling_t dm;
-     template_arg_list_t arg_list;
+push_template_arg_list (demangling_t dm, template_arg_list_t arg_list)
 {
   arg_list->next = dm->template_arg_lists;
   dm->template_arg_lists = arg_list;
@@ -759,9 +732,7 @@ push_template_arg_list (dm, arg_list)
    are popped and deleted.  */
 
 static void
-pop_to_template_arg_list (dm, arg_list)
-     demangling_t dm;
-     template_arg_list_t arg_list;
+pop_to_template_arg_list (demangling_t dm, template_arg_list_t arg_list)
 {
   while (dm->template_arg_lists != arg_list)
     {
@@ -781,9 +752,7 @@ pop_to_template_arg_list (dm, arg_list)
 /* Prints the contents of ARG_LIST to FP.  */
 
 static void
-template_arg_list_print (arg_list, fp)
-  template_arg_list_t arg_list;
-  FILE *fp;
+template_arg_list_print (template_arg_list_t arg_list, FILE * fp)
 {
   string_list_t arg;
   int index = -1;
@@ -806,8 +775,7 @@ template_arg_list_print (arg_list, fp)
    lists.  If there is no list of template arguments, returns NULL.  */
 
 static template_arg_list_t
-current_template_arg_list (dm)
-     demangling_t dm;
+current_template_arg_list (demangling_t dm)
 {
   return dm->template_arg_lists;
 }
@@ -817,9 +785,7 @@ current_template_arg_list (dm)
    Returns NULL if allocation fails.  */
 
 static demangling_t
-demangling_new (name, style)
-     const char *name;
-     int style;
+demangling_new (const char *name, int style)
 {
   demangling_t dm;
   dm = (demangling_t) malloc (sizeof (struct demangling_def));
@@ -853,8 +819,7 @@ demangling_new (name, style)
    it.  */
 
 static void
-demangling_delete (dm)
-     demangling_t dm;
+demangling_delete (demangling_t dm)
 {
   int i;
   template_arg_list_t arg_list = dm->template_arg_lists;
@@ -968,9 +933,7 @@ static status_t cp_demangle_type
    return an error.  */
 
 static status_t
-demangle_char (dm, c)
-     demangling_t dm;
-     int c;
+demangle_char ( demangling_t dm, int c)
 {
   static char *error_message = NULL;
 
@@ -993,8 +956,7 @@ demangle_char (dm, c)
     <mangled-name>      ::= _Z <encoding>  */
 
 static status_t
-demangle_mangled_name (dm)
-     demangling_t dm;
+demangle_mangled_name (demangling_t dm)
 {
   DEMANGLE_TRACE ("mangled-name", dm);
   RETURN_IF_ERROR (demangle_char (dm, '_'));
@@ -1010,8 +972,7 @@ demangle_mangled_name (dm)
 			::= <special-name>  */
 
 static status_t
-demangle_encoding (dm)
-     demangling_t dm;
+demangle_encoding (demangling_t dm)
 {
   int encode_return_type;
   int start_position;
@@ -1071,9 +1032,7 @@ demangle_encoding (dm)
                         ::= <substitution>  */
 
 static status_t
-demangle_name (dm, encode_return_type)
-     demangling_t dm;
-     int *encode_return_type;
+demangle_name ( demangling_t dm, int *encode_return_type)
 {
   int start = substitution_start (dm);
   char peek = peek_char (dm);
@@ -1158,9 +1117,7 @@ demangle_name (dm, encode_return_type)
     <nested-name>     ::= N [<CV-qualifiers>] <prefix> <unqulified-name> E  */
 
 static status_t
-demangle_nested_name (dm, encode_return_type)
-     demangling_t dm;
-     int *encode_return_type;
+demangle_nested_name ( demangling_t dm, int *encode_return_type)
 {
   char peek;
 
@@ -1214,9 +1171,7 @@ demangle_nested_name (dm, encode_return_type)
                         ::= <substitution>  */
 
 static status_t
-demangle_prefix (dm, encode_return_type)
-     demangling_t dm;
-     int *encode_return_type;
+demangle_prefix ( demangling_t dm, int *encode_return_type)
 {
   int start = substitution_start (dm);
   int nested = 0;
@@ -1313,9 +1268,7 @@ demangle_prefix (dm, encode_return_type)
 			::= <source-name>  */
 
 static status_t
-demangle_unqualified_name (dm, suppress_return_type)
-     demangling_t dm;
-     int *suppress_return_type;
+demangle_unqualified_name ( demangling_t dm, int *suppress_return_type)
 {
   char peek = peek_char (dm);
 
@@ -1356,8 +1309,7 @@ demangle_unqualified_name (dm, suppress_return_type)
     <source-name> ::= <length number> <identifier>  */
 
 static status_t
-demangle_source_name (dm)
-     demangling_t dm;
+demangle_source_name (demangling_t dm)
 {
   int length;
 
@@ -1390,11 +1342,7 @@ demangle_source_name (dm)
     <positive-number> ::= <decimal integer>  */
 
 static status_t
-demangle_number (dm, value, base, is_signed)
-     demangling_t dm;
-     int *value;
-     int base;
-     int is_signed;
+demangle_number ( demangling_t dm, int *value, int base, int is_signed)
 {
   dyn_string_t number = dyn_string_new (10);
 
@@ -1418,11 +1366,7 @@ demangle_number (dm, value, base, is_signed)
    terminating character.  */
 
 static status_t
-demangle_number_literally (dm, str, base, is_signed)
-     demangling_t dm;
-     dyn_string_t str;
-     int base;
-     int is_signed;
+demangle_number_literally ( demangling_t dm, dyn_string_t str, int base, int is_signed)
 {
   DEMANGLE_TRACE ("number*", dm);
 
@@ -1463,10 +1407,7 @@ demangle_number_literally (dm, str, base, is_signed)
    characters and places it in IDENTIFIER.  */
 
 static status_t
-demangle_identifier (dm, length, identifier)
-     demangling_t dm;
-     int length;
-     dyn_string_t identifier;
+demangle_identifier ( demangling_t dm, int length, dyn_string_t identifier)
 {
   DEMANGLE_TRACE ("identifier", dm);
 
@@ -1605,11 +1546,7 @@ demangle_identifier (dm, length, identifier)
 		  ::= v [0-9] <source-name>  # vendor extended operator  */
 
 static status_t
-demangle_operator_name (dm, short_name, num_args, type_arg)
-     demangling_t dm;
-     int short_name;
-     int *num_args;
-     int *type_arg;
+demangle_operator_name ( demangling_t dm, int short_name, int *num_args, int *type_arg)
 {
   struct operator_code
   {
@@ -1751,8 +1688,7 @@ demangle_operator_name (dm, short_name, num_args, type_arg)
     <nv-offset> ::= <offset number>   # non-virtual base override  */
 
 static status_t
-demangle_nv_offset (dm)
-     demangling_t dm;
+demangle_nv_offset (demangling_t dm)
 {
   dyn_string_t number;
   status_t status = STATUS_OK;
@@ -1787,8 +1723,7 @@ demangle_nv_offset (dm)
 			# virtual base override, with vcall offset  */
 
 static status_t
-demangle_v_offset (dm)
-     demangling_t dm;
+demangle_v_offset (demangling_t dm)
 {
   dyn_string_t number;
   status_t status = STATUS_OK;
@@ -1841,8 +1776,7 @@ demangle_v_offset (dm)
 		  ::= v <v-offset> _  */
 
 static status_t
-demangle_call_offset (dm)
-     demangling_t dm;
+demangle_call_offset (demangling_t dm)
 {
   DEMANGLE_TRACE ("call-offset", dm);
 
@@ -1902,8 +1836,7 @@ demangle_call_offset (dm)
 		   ::= TJ <type>	  # java Class structure  */
 
 static status_t
-demangle_special_name (dm)
-     demangling_t dm;
+demangle_special_name (demangling_t dm)
 {
   dyn_string_t number;
   int unused;
@@ -2091,8 +2024,7 @@ demangle_special_name (dm)
                    ::= D2  # base object (not-in-charge) dtor  */
 
 static status_t
-demangle_ctor_dtor_name (dm)
-     demangling_t dm;
+demangle_ctor_dtor_name (demangling_t dm)
 {
   static const char *const ctor_flavors[] = 
   {
@@ -2196,10 +2128,7 @@ demangle_ctor_dtor_name (dm)
      <pointer-to-member-type> ::= M </class/ type> </member/ type>  */
 
 static status_t
-demangle_type_ptr (dm, insert_pos, substitution_start)
-     demangling_t dm;
-     int *insert_pos;
-     int substitution_start;
+demangle_type_ptr (demangling_t dm, int *insert_pos, int substitution_start)
 {
   status_t status;
   int is_substitution_candidate = 1;
@@ -2364,8 +2293,7 @@ demangle_type_ptr (dm, insert_pos, substitution_start)
 	   ::= <substitution>  */
 
 static status_t
-demangle_type (dm)
-     demangling_t dm;
+demangle_type (demangling_t dm)
 {
   int start = substitution_start (dm);
   char peek = peek_char (dm);
@@ -2654,8 +2582,7 @@ static const char *const java_builtin_type_names[26] =
 		   ::= u <source-name>    # vendor extended type  */
 
 static status_t
-demangle_builtin_type (dm)
-     demangling_t dm;
+demangle_builtin_type (demangling_t dm)
 {
 
   char code = peek_char (dm);
@@ -2740,9 +2667,7 @@ demangle_CV_qualifiers (dm, qualifiers)
     <function-type> ::= F [Y] <bare-function-type> E  */
 
 static status_t
-demangle_function_type (dm, function_name_pos)
-     demangling_t dm;
-     int *function_name_pos;
+demangle_function_type (demangling_t dm, int*function_name_pos)
 {
   DEMANGLE_TRACE ("function-type", dm);
   RETURN_IF_ERROR (demangle_char (dm, 'F'));  
@@ -2766,9 +2691,7 @@ demangle_function_type (dm, function_name_pos)
     <bare-function-type> ::= <signature type>+  */
 
 static status_t
-demangle_bare_function_type (dm, return_type_pos)
-     demangling_t dm;
-     int *return_type_pos;
+demangle_bare_function_type (demangling_t dm, int *return_type_pos)
 {
   /* Sequence is the index of the current function parameter, counting
      from zero.  The value -1 denotes the return type.  */
@@ -2846,9 +2769,7 @@ demangle_bare_function_type (dm, return_type_pos)
     <class-enum-type> ::= <name>  */
 
 static status_t
-demangle_class_enum_type (dm, encode_return_type)
-     demangling_t dm;
-     int *encode_return_type;
+demangle_class_enum_type (demangling_t dm, int *encode_return_type)
 {
   DEMANGLE_TRACE ("class-enum-type", dm);
 
@@ -2874,9 +2795,7 @@ demangle_class_enum_type (dm, encode_return_type)
                  ::= A <dimension expression> _ <element type>  */
 
 static status_t
-demangle_array_type (dm, ptr_insert_pos)
-     demangling_t dm;
-     int *ptr_insert_pos;
+demangle_array_type (demangling_t dm, int *ptr_insert_pos)
 {
   status_t status = STATUS_OK;
   dyn_string_t array_size = NULL;
@@ -2949,8 +2868,7 @@ demangle_array_type (dm, ptr_insert_pos)
                      ::= T <parameter-2 number> _  */
 
 static status_t
-demangle_template_param (dm)
-     demangling_t dm;
+demangle_template_param (demangling_t dm)
 {
   int parm_number;
   template_arg_list_t current_arg_list = current_template_arg_list (dm);
@@ -2988,8 +2906,7 @@ demangle_template_param (dm)
     <template-args> ::= I <template-arg>+ E  */
 
 static status_t
-demangle_template_args (dm)
-     demangling_t dm;
+demangle_template_args (demangling_t dm)
 {
   int first = 1;
   dyn_string_t old_last_source_name;
@@ -3058,8 +2975,7 @@ demangle_template_args (dm)
    and the emitted output is `(type)number'.  */
 
 static status_t
-demangle_literal (dm)
-     demangling_t dm;
+demangle_literal (demangling_t dm)
 {
   char peek = peek_char (dm);
   dyn_string_t value_string;
@@ -3158,8 +3074,7 @@ demangle_literal (dm)
                    ::= X <expression> E           # expression  */
 
 static status_t
-demangle_template_arg (dm)
-     demangling_t dm;
+demangle_template_arg (demangling_t dm)
 {
   DEMANGLE_TRACE ("template-arg", dm);
 
@@ -3203,8 +3118,7 @@ demangle_template_arg (dm)
                  ::= <scope-expression>  */
 
 static status_t
-demangle_expression (dm)
-     demangling_t dm;
+demangle_expression (demangling_t dm)
 {
   char peek = peek_char (dm);
 
@@ -3272,8 +3186,7 @@ demangle_expression (dm)
                        ::= sr <qualifying type> <encoding>  */
 
 static status_t
-demangle_scope_expression (dm)
-     demangling_t dm;
+demangle_scope_expression (demangling_t dm)
 {
   RETURN_IF_ERROR (demangle_char (dm, 's'));
   RETURN_IF_ERROR (demangle_char (dm, 'r'));
@@ -3290,8 +3203,7 @@ demangle_scope_expression (dm)
 		   ::= L <mangled-name> E         # external name  */
 
 static status_t
-demangle_expr_primary (dm)
-     demangling_t dm;
+demangle_expr_primary (demangling_t dm)
 {
   char peek = peek_char (dm);
 
@@ -3339,9 +3251,7 @@ demangle_expr_primary (dm)
 */
 
 static status_t
-demangle_substitution (dm, template_p)
-     demangling_t dm;
-     int *template_p;
+demangle_substitution (demangling_t dm, int *template_p)
 {
   int seq_id;
   int peek;
@@ -3477,8 +3387,7 @@ demangle_substitution (dm, template_p)
                  := Z <function encoding> E s [<discriminator>]  */
 
 static status_t
-demangle_local_name (dm)
-     demangling_t dm;
+demangle_local_name (demangling_t dm)
 {
   DEMANGLE_TRACE ("local-name", dm);
 
@@ -3515,9 +3424,7 @@ demangle_local_name (dm)
      <discriminator> ::= _ <number>  */
 
 static status_t
-demangle_discriminator (dm, suppress_first)
-     demangling_t dm;
-     int suppress_first;
+demangle_discriminator (demangling_t dm,int  suppress_first)
 {
   /* Output for <discriminator>s to the demangled name is completely
      suppressed if not in verbose mode.  */
@@ -3560,10 +3467,7 @@ demangle_discriminator (dm, suppress_first)
    an error message, and the contents of RESULT are unchanged.  */
 
 static status_t
-cp_demangle (name, result, style)
-     const char *name;
-     dyn_string_t result;
-     int style;
+cp_demangle (const char *name, dyn_string_t result, int style)
 {
   status_t status;
   int length = strlen (name);
@@ -3610,9 +3514,7 @@ cp_demangle (name, result, style)
    an error message, and the contents of RESULT are unchanged.  */
 
 static status_t
-cp_demangle_type (type_name, result)
-     const char* type_name;
-     dyn_string_t result;
+cp_demangle_type (const char *type_name, dyn_string_t result)
 {
   status_t status;
   demangling_t dm = demangling_new (type_name, DMGL_GNU_V3);
@@ -3763,9 +3665,7 @@ __cxa_demangle (mangled_name, output_buffer, length, status)
    If the demangling failes, returns NULL.  */
 
 char *
-cplus_demangle_v3 (mangled, options)
-     const char* mangled;
-     int options;
+cplus_demangle_v3 (const char *mangled, int options)
 {
   dyn_string_t demangled;
   status_t status;
@@ -3823,8 +3723,7 @@ cplus_demangle_v3 (mangled, options)
    of JArray<TYPE> with TYPE[].  */
 
 char *
-java_demangle_v3 (mangled)
-     const char* mangled;
+java_demangle_v3 (const char *mangled)
 {
   dyn_string_t demangled;
   char *next;
@@ -3931,8 +3830,7 @@ java_demangle_v3 (mangled)
    zero, indicating that some error occurred, or a demangling_t
    holding the results.  */
 static demangling_t
-demangle_v3_with_details (name)
-     const char *name;
+demangle_v3_with_details (const char *name)
 {
   demangling_t dm;
   status_t status;
@@ -3970,8 +3868,7 @@ demangle_v3_with_details (name)
    - '2' if NAME is a base object constructor, or
    - '3' if NAME is a complete object allocating constructor.  */
 enum gnu_v3_ctor_kinds
-is_gnu_v3_mangled_ctor (name)
-     const char *name;
+is_gnu_v3_mangled_ctor (const char *name)
 {
   demangling_t dm = demangle_v3_with_details (name);
 
@@ -3992,8 +3889,7 @@ is_gnu_v3_mangled_ctor (name)
    - '1' if NAME is a complete object destructor, or
    - '2' if NAME is a base object destructor.  */
 enum gnu_v3_dtor_kinds
-is_gnu_v3_mangled_dtor (name)
-     const char *name;
+is_gnu_v3_mangled_dtor (const char *name)
 {
   demangling_t dm = demangle_v3_with_details (name);
 
@@ -4027,9 +3923,7 @@ const char* program_name;
 /* Prints usage summary to FP and then exits with EXIT_VALUE.  */
 
 static void
-print_usage (fp, exit_value)
-     FILE* fp;
-     int exit_value;
+print_usage (FILE *fp, int exit_value)
 {
   fprintf (fp, "Usage: %s [options] [names ...]\n", program_name);
   fprintf (fp, "Options:\n");
@@ -4056,9 +3950,7 @@ static const struct option long_options[] =
    with their demangled equivalents.  */
 
 int
-main (argc, argv)
-     int argc;
-     char *argv[];
+main (int argc, char *argv[])
 {
   status_t status;
   int i;
