@@ -24,8 +24,8 @@ X11_INC		= @X_CFLAGS@
 # X libraries
 X11_LIB		= @X_LIBS@  @X_PRE_LIBS@  -lX11  @X_EXTRA_LIBS@
 
-CPPFLAGS	= @CPPFLAGS@  @DEFS@  -I.  ${X11_INC}
-CFLAGS		= @CFLAGS@  ${CPPFLAGS}
+CPPFLAGS	= @CPPFLAGS@  @DEFS@  -I.  ${X11_INC} 
+CFLAGS		= @CFLAGS@  ${CPPFLAGS} -Wstrict-prototypes -Wmissing-prototypes
 LDFLAGS		= @LDFLAGS@  ${X11_LIB}  @LIBS@
 LIBS		= @LIBS@
 
@@ -127,7 +127,7 @@ ${INCLUDE}/wn.h: wn.h
 ${LIB}/ukcframed: ukcframed
 	@${SCCS_CHECK}
 	${INSTALL} -c -m 755 -o bin -s $? $@
-	
+
 # X windows
 testrop: testrop.o libwn.${LIBSUFFIX}
 	rm -f testrop
@@ -157,7 +157,7 @@ clean:
 
 tags: ${SRCS} ${HDRS}
 	ctags -tw  ${SRCS} ${HDRS}
-	
+
 list:
 	@echo README ${FILES} | tr ' ' '\012'
 

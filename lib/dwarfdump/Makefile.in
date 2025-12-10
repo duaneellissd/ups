@@ -27,7 +27,7 @@ RANLIB =	@RANLIB@
 DEFS =		@DEFS@
 LIBS =		@LIBS@ -L../libdwarf -ldwarf @ELFLIB@
 INCLUDES =	-I. -I$(srcdir) -I$(srcdir)/../libdwarf
-CFLAGS =	@CPPFLAGS@ @CFLAGS@ $(INCLUDES)
+CFLAGS =	@CPPFLAGS@ @CFLAGS@ $(INCLUDES) -Wstrict-prototypes -Wmissing-prototypes
 LDFLAGS =	@LDFLAGS@ $(LIBS)
 
 # ../libdwarf gets us to local headers

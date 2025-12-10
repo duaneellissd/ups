@@ -18,7 +18,7 @@ CPP		= @CPP@
 INSTALL		= @INSTALL@
 RANLIB		= @RANLIB@
 
-CPPFLAGS	= @CPPFLAGS@  @DEFS@  -I.
+CPPFLAGS	= @CPPFLAGS@  @DEFS@  -I. -Wstrict-prototypes -Wmissing-prototypes
 CFLAGS		= @CFLAGS@  ${CPPFLAGS}
 LDFLAGS		= @LDFLAGS@  ${X11_LIB}  @LIBS@
 LIBS		= @LIBS@

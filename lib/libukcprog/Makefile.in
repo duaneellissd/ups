@@ -19,7 +19,7 @@ INSTALL		= @INSTALL@
 RANLIB		= @RANLIB@
 
 CPPFLAGS	= @CPPFLAGS@  @DEFS@  -I.
-CFLAGS		= @CFLAGS@  ${CPPFLAGS}
+CFLAGS		= @CFLAGS@  ${CPPFLAGS}  -Wstrict-prototypes -Wmissing-prototypes
 LDFLAGS		= @LDFLAGS@  @LIBS@
 LIBS		= @LIBS@
 

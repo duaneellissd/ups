@@ -22,7 +22,7 @@ RM = rm -f
 LN_S = @LN_S@
 
 CC = @CC@
-CFLAGS = @CFLAGS@
+CFLAGS = @CFLAGS@ -Wstrict-prototypes -Wmissing-prototypes
 CPPFLAGS = @CPPFLAGS@
 LDFLAGS = @LDFLAGS@
 LIBS = @LIBS@

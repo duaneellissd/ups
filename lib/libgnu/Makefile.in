@@ -18,8 +18,8 @@ CPP		= @CPP@
 YACC		= @YACC@
 RANLIB		= @RANLIB@
 
-CPPFLAGS	= @CPPFLAGS@  @DEFS@  -I.
-CFLAGS		= @CFLAGS@  ${CPPFLAGS}
+CPPFLAGS	= @CPPFLAGS@  @DEFS@  -I. 
+CFLAGS		= @CFLAGS@  ${CPPFLAGS} -Wstrict-prototypes -Wmissing-prototypes
 LDFLAGS		= @LDFLAGS@
 LIBS		= @LIBS@
 
